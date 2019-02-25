@@ -1,0 +1,163 @@
+.compose-pad{
+    height: 850px;
+
+    /* background-color: red;  */
+
+ } 
+.pick-pad{
+    height:1000%;
+    background-color: yellow;
+}
+.lyric{
+    height: 55%;
+    background-color: antiquewhite;
+    width: 103%;
+    
+    /* background-color: #FEF2EF;  */
+    overflow-y: scroll; 
+    /* width: 120%; */
+
+}
+.theme-button{
+    width:100%;
+    margin: 0px;
+    border:0px;
+    /* color: red;  */
+    outline: none; 
+}
+.word-pad{
+    /* background-color: chocolate; */
+    /* background-color: 	#94A9FA;  */
+    height: 820px;
+    
+}
+.sentence-option{
+    height: 10%;
+    margin: 8px 80px 8px 8px;
+    width:100%;
+}
+
+.sentence{
+    height: 25%;
+    /* background-color: rgb(6, 105, 105); */
+    /* background-color: 	#4C84A1; */
+    
+    /* background-color: #3F636B;  */
+    
+    /* background-color: #94A9FA; */
+    padding-right: 2px; 
+    margin-right: 2px; 
+    /* background-color: antiquewhite; */
+}
+.sentence-pad{
+    height:500px;
+    background-color: bisque;
+    
+}
+#whole-window{
+    margin:0px;
+    /* background-color: red;  */
+}
+.verse{
+    /* background-color: whitesmoke; */
+    height: 27px;
+    /* margin: 0;
+    padding: 2px;  */
+    width:100%;
+    font-size: 17px; 
+    font-weight: 600;
+   font-family: 'Meie Script', cursive;
+}
+
+
+
+.b-pad{
+    height: 70px;
+    border: 1px solid whitesmoke !important;
+    
+}
+
+.btnt{
+    font-size: 18px; 
+    font-weight: 600;
+    
+   /* color: grey;  */
+}
+.sentbtn{
+    /* background-color: #FEFDFC; */
+    background-color:  #E2EEEE;
+    /* background-color: #FEF2EF;  */
+    color:  #3E3C63; 
+
+    border: 1px solid whitesmoke !important;
+    margin: 3.5px 3.5px 3.5px 3.5px !important;
+    font-weight: 480; 
+    border-radius: 40px; 
+    font-size: 19px; 
+    height: 39px;
+    outline: none; 
+}
+span.head1{
+    font-weight: 900;
+    font-size:40px;
+}
+span.head2{
+    font-weight: 700;
+    font-size:30px;
+    margin-bottom: 0px; 
+    color:  #3E3C63; 
+}
+.cola{
+    background-color:#3E3C63 ;
+    color: white; 
+}
+.colb{
+    background-color: #6AB7DF;
+    color: whitesmoke; 
+}
+.colc{
+    background-color: #E2EEEE;
+    /* color:  #737373;  */
+    color: 	#595779; 
+}
+.cold{
+    background-color: #F77455 ;
+    color: whitesmoke; 
+}
+.cole{
+    background-color: #F7E146 ;
+    color:  white; 
+}
+.colf{
+    background-color: #FBF4A0 ;
+    color:   	#75738F; 
+}
+.keybtn{
+    padding: 10px; 
+    margin: 8px 5px  !important;
+    border-radius: 40px;
+    background-color: #94A9FA ;
+    color:   	white; 
+    font-size: 18px; 
+    font-weight: 600;
+    height: 50px;
+    border: 1px solid whitesmoke !important;
+    outline: none; 
+
+}
+*{
+    /* font-family: Dosis;  */
+}
+
+.nobord{
+    margin: 0; 
+
+}
+
+.containPlease{
+    height: 90%;
+}
+html, body{height: 90%}
+.modal {
+    overflow-y: hidden; 
+}
