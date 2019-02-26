@@ -9,7 +9,7 @@ Patrick Yin  <br>
 Ruochen You  <br>
 
 ## Demo
-<img src='lyrics3.gif' width='' alt='Demo' />
+<img src='./img/lyrics.gif' width='' alt='Demo' />
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Project Description
