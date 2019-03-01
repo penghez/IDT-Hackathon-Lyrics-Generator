@@ -1,120 +1,176 @@
-<!DOCTYPE html>
-<html lang="en-US">
-
-<head>
-    <title>Lyrics Generator</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style2.css">
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
-        crossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-<script src = "lyrics.js"></script>
-<!-- <script src = "lyrics-modified-3.js"></script> -->
-<script src = "axios.js"></script>
-</head>
-
-<body onload="start()">
-
-<div class="row " >
-        <div class="col-12">
-                <p class="text-center ">
-                    <span class = "head1"> Lyric Composing</span>
-                </p>
-        </div> 
-</div>
-
-
-
-
-
-    <!-- modal2 -->
-<!-- THEME BUTTONS -->
-<div class = "row no-gutters">
-<div class = "col-lg-12 col-xl-12 theme" id = "theme-window">
+var themes = ["Happy", "Angry", "Sad", "Excited", "InLove", "Scared"  ]
+var curtheme;
+var keys = {
+    "Angry" :  ["fire", "red", "shout", "outburst", "scream", "yell", "flaming", "mad", "heated", "furious", "rage", "sweating", "fighting", "punch", "hate", "fault" , "raging", "huffing", "irate", "annoyed", "sore", "enraged", "outraged", "wrath", "fury", "hate", "disdain", "anguish", "passion", "tantrum", "turmoil", "temper", "grief", "hostility", "inflame", "vengeance", "displeased", "scorn", "fists", "angst", "criticism", "tension", "abhorrence" , "seethe", "provoke", "blaze", "livid"],
+    //47
     
-        <div class = 'row no-gutters'>
-            <div class = "col-lg-2 col-2 full ">
-                    <button type="button"  onclick="theme(this.id)" class="b-pad  cola  theme-button btnt" id = 'Happy'>Happy</button>
-                    
-            </div>
-            <div class = "col-lg-2 col-2 full btnt">
-                    <button type="button" onclick="theme(this.id)" class="b-pad colb  theme-button btnt " id = "Angry">Angry</button>
-            </div>
-            <div class = "col-lg-2 col-2 full btnt">
-                    <button type="button" onclick="theme(this.id)" class="b-pad colc theme-button  btnt " id = 'Sad'>Sad</button>
-            </div>
-            <div class = "col-lg-2 col-2 full ">
-                    <button type="button" onclick="theme(this.id)" class="b-pad cold  theme-button btnt " id = "Excited">Excited</button>
-            </div>
-            <div class = "col-lg-2 col-2 full">
-                    <button type="button" onclick="theme(this.id)" class="b-pad cole  theme-button btnt " id = "InLove">InLove</button>
-            </div>
-            <div class = "col-lg-2 col-2 full">
-                    <button type="button" onclick="theme(this.id)" class="b-pad colf  theme-button btnt" id = "Scared">Scared</button>
-            </div>
-
-        </div>
+    "Happy": ["smile", "fun", "flower", "yellow", "sunshine", "summer", "calm", "ocean", "dream", "clouds", "bliss", "blessings", "fountain", "content", "peaceful", "harmony", "mellow", "cheerful", "euphoric", "golder", "bright", "paradise", "nirvana", "utopia", "fantasyland", "garden", "watterfall", "zen", "springtime", "glad", "lughing", "delighted", "grateful", "lucky", "cheery", "playful", "radiant", "enjoyment", "pleasure", "thankful", "merry","fortunate", "glee", "relaxed", "jubilant", "eager", "fabulous" ],
+    //47    
+    "Sad" : ["tears", "dreary", "downtrodden", "bleak", "somber", "poor", "negative", "pess", "pessimistic", "dreary", "mellow", "down", "slow", "irritable", "sulk", "mourn", "cranky", "sucks", "horrible", "depressed", "crying", "black", "dark", "gloomy", "misery" , "night", "nightmare", "angst", "tired", "hopeless", "glum", "grief", "broken-hearted", "sorrow", "regretful", "down", "woe", "low-spirited","blue", "desolate", "heavy", "intense", "concern", "low", "regret", "anguish", "absorbed", "abyss" , "turmoil", "cranky", "forlorn" ],
+    //50
     
-</div>
-</div>
-<!-- ENTIRE WINDOW -->
-<div class = "row containPlease " style="margin: 0px " >
-    <div class=" col-lg-8 col-xl-8 compose-pad" id = "compose-window" >
-                
-                <div class ="row text-center lyric  " id = "lyrics">
-                    <div class = "col-11 line" id = "line" ></div>
-                </div>    
-            
-                <div class = " sentence mt-2 mr-2 ml-4" id="sentence-window"  >
-                    
-                        <div class = "col-lg-12 col-xl-12 row " >
-                            <button type="button" onclick="choose(this.id)" class = "  sentbtn   sentence-option" id = "sentence-option0"> </button>
-                            <button type="button" onclick="choose(this.id)" class = "sentbtn  sentence-option" id = "sentence-option1">  </button>
-                            <button type="button " onclick="choose(this.id)" class = "sentbtn  sentence-option" id = "sentence-option2"> </button>
-                            <button type="button" onclick="choose(this.id)" class = "sentbtn sentence-option" id = "sentence-option3">  </button>
-                        </div>
-                </div>
-    </div>
-    <!-- END COLUMN ONE  -->
-    <div class="col-lg-4 col-xl-4 col-md-4 col-4 word-pad" id = "word-window">
-            <div class="row  mb-0" >
-                    <div class="col-12 bold mt-3 mb-0">
-                            <p class="text-center ">
-                                <span class = "head2"> Pick a Sub Theme</span>
-                            </p>
-                    </div> 
-            </div>
-            <div class="row mt-0" id="keys" >
-                
-                <div class="col-6 " id="keyscol1">
-                        <button  onclick="key(this.id)" type="button" class=" keybtn  theme-button    " id = "0">smile</button>
-                        <button  onclick="key(this.id)" type="button" class=" keybtn  theme-button    " id = "1">beauty</button>
-                        <button onclick="key(this.id)"  type="button" class=" keybtn  theme-button " id = "2">flowers</button>
-                        <button onclick="key(this.id)" type="button" class="  keybtn  theme-button    " id = "3">picnic</button>
-                        <button onclick="key(this.id)" type="button" class="  keybtn  theme-button    " id = "4">sunny</button> <button onclick="key(this.id)" type="button" class="  keybtn  theme-button    " id = "5">yellow</button>
-                      
-                </div>
-                <div class="col-6 " id="keyscol2">
-                        <button  onclick="key(this.id)" type="button" class="  keybtn theme-button    " id = "6">shine</button>
-                        <button onclick="key(this.id)" type="button" class="  keybtn  theme-button    " id = "7">sparkles</button>
-                        <button onclick="key(this.id)" type="button" class="  keybtn  theme-button      " id = "8">greet</button>
-                        <button onclick="key(this.id)"  type="button" class="  keybtn  theme-button    " id = "9">beauty</button>
-                        <button onclick="key(this.id)"  type="button" class="  keybtn  theme-button    " id = "10">balloons</button>
-                        <button onclick="key(this.id)"  type="button" class="  keybtn  theme-button    " id = "11">joy</button> 
-                       
-                    </div>
+    "Excited" : ["balloons", "dance", "music", "party", "scream", "butterflies", "bursting", "life", "anticipation", "exhilaration", "hullabaloo","enthusiasm", "joy", "buzz", "elation", "thrill", "euphoria", "exuberance", "fervor", "optimism", "vibrant", "eager", "zeal", "sensationalism", "boom", "exaltation", "craze", "adrenalin", "jubilation", "festivity" , "feelings", "giddy", "fireworks", "pop", "bright", "eager",  "celebration" ],
+    //36
+    
+    "InLove" : ["passion", "honey", "baby", "affection","adore","compassion","feelings", "love", "dear","eyes", "soul", "heart", "roses", "hug", "kiss", "champagne", "ring", "flowers", "romance", "marriage", "beautiful", "valentine", "sweetie", "lovers", "wedding", "bride", "celebration", "embrace", "darling", "crush", "emotional", "caring", "lovesong" ] ,
+//24
+    "Scared" :  ["anxious","crying", "apprehensive", "frightened", "afraid", "terrified", "fearful", "petrified", "worried", "freaked", "panicked", "fear", "worry", "horrified", "alone", "panic", "shocked", "dismayed", "shy", "dread", "phobia", "disturbed", "heartbroken", "shaken", "unnerved", "confused", "traumatized", "shocked", "panic-stricken", "alarm", "anxiety", "bugged", "flustered", "dazed", "perturbed", "bawling", "overwhelmed", "daunted", "discomfort", "screaming", "bothered", "rattled", "mortified", "devastated", "nightmare", "darkness" , "terror", "unrest", "unease", "despair"] 
+    //50
 
-            </div>
-    </div> 
-</div>
-</div>
-</div> 
+}
+var index= ["#0", "#1","#2","#3","#4","#5","#6","#7","#8","#9","#10", "#11","#12","#13","#14","#15","#16","#17","#18","#19","#10"]
+// var index = ["#Happy", "#Angry", "#Sad", "#Excited", "#InLove", "#Scared" ]
 
-</body>
-</html>
+var counter = 0;  //keeps track of index in the array of key words 
+var divCount = 200 
+var count4 = 0;
+var sent = {
+    "sentence-option0" : 0, 
+    "sentence-option1" : 1 , 
+    "sentence-option2" : 2, 
+    "sentence-option3" : 3
+}
+
+var onButton= {
+    "#sentence-option0" : " ", 
+    "#sentence-option1" : " " , 
+    "#sentence-option2" : "  ", 
+    "#sentence-option3" : "  "
+}
+var onkeybutton = {
+    "1": "test",
+    "2": "test",
+    "3": "test",
+    "4": "test",
+    "5": "test",
+    "6": "test",
+    "7": "test",
+    "8": "test",
+    "9": "test",
+    "10": "test",
+    "11": "test",
+    "12": "test"
+}
+
+
+
+var rhyming = ["look at this cat ", "the cat in the hat", "my baseball hat", "oh yeah, my hat ", "so much of my cat"]
+var options = ["this is a test", "this is a also test", "Is this perhaps a test?", "Oh look, another test", "this is a quite another test"] //will contain array of strings of possible sentences 
+//function for when theme is clicked 
+//fills the key buttons
+
+function start(){
+      document.getElementById("word-window").style.display = "none";
+     document.getElementById("sentence-window").style.display = "none";
+
+ }
+function theme(id){ //please pass in this.id  
+    array = keys[id]; 
+    curtheme = themes[id];
+     
+    for( var i = 0; i< 14; i++ ){ //change i to < # of key buttons. change index arary to the proper divs of the buttons.
+        if( counter > array.length -1 ){
+            counter = 0; 
+        }
+        //index[i]-- array of divs of the buttons.  
+        $(index[i]).html(array[counter]);//fill with the first couple of things in the array. 
+        
+         
+        
+         var key = "" + i; 
+         onkeybutton[key] = array[counter]
+         counter++;
+    }
+    document.getElementById("word-window").style.display = "block";
+}
+
+//function for when sentence is clicked. 
+//appends to poem 
+function choose(id){
+    //for every four divs, send an empty one. 
+    if(count4 == 4){
+        count4 = 0; 
+        document.getElementById("line").innerHTML +=  '<div  style = "margin-left: 30px" class = "verse" id = " ' + divCount++ + ' ">' + "  " + '</div>';  
+
+    }
+    var index = sent[id]; 
+    var div = "#" +  "sentence-option" + (index); 
+    var sentence = '<div  style = "margin-left: 30px" class = "verse" id = " ' + divCount++ + ' ">' + onButton[div] + '</div>'; 
+    document.getElementById("line").innerHTML += sentence;
+    count4++; 
+
+    var sentence = onButton[div];
+    var words = sentence.split(" ");
+    var lastWord= words[words.length -1]; 
+    genBasic(lastWord)
+
+}
+
+//function for when key word is clicked. populates sentences. 
+function key(id){
+   
+    var word = onkeybutton[id]; 
+    
+      genBasic(word, id)
+     document.getElementById("sentence-window").style.display = "block";
+ 
+    
+}
+
+
+function genBasic(word, id){
+    var rst;
+    var xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function() {
+        if ( xhr.readyState === 4 ) {
+            if ( ( xhr.status >= 200 && xhr.status < 300 ) || xhr.status == 304 ) {
+                rst = JSON.parse(xhr.response).choices;
+                rhyming = rst;
+                console.log(rst);
+               
+                for( var i = 0; i< 4; i++){
+                    var div = "#" +  "sentence-option" + (i ); 
+                    $(div).html(rhyming[i]);
+                    onButton[div] = rhyming[i]; 
+
+                }
+
+                     $(index[+id]).html(array[counter]);//fill with the first couple of things in the array. 
+         var key = "" + id; 
+         onkeybutton[key] = array[counter]
+         counter++;
+            }
+        }
+    };
+    xhr.open( 'POST', 'http://3.91.144.105:80/genbasic?word=' + word + '&theme=' + theme, true );
+    xhr.setRequestHeader( 'Content-Type', 'application/form-data' );
+    xhr.send();
+    return rst;
+}
+
+function rhmify(word){
+    var rst;
+    var xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function() {
+        if ( xhr.readyState === 4 ) {
+            if ( ( xhr.status >= 200 && xhr.status < 300 ) || xhr.status == 304 ) {
+                rst = JSON.parse(xhr.response).choices;
+                rhyming = rst;
+                console.log(rst);
+                for( var i = 0; i< 4; i++){
+                    var div = "#" +  "sentence-option" + (i ); 
+                    $(div).html(rhyming[i]);
+                    onButton[div] = rhyming[i]; 
+                }
+            }
+        }
+    };
+    xhr.open( 'POST', 'http://3.91.144.105:80/rhyming?word=' + word + '&theme=' + theme, true );
+    xhr.setRequestHeader( 'Content-Type', 'application/form-data' );
+    xhr.send();
+    return rst;
+}
+
+
